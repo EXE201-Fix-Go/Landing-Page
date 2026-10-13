@@ -377,8 +377,29 @@ summary {
   letter-spacing: -0.03em;
   text-wrap: balance;
 }
+.hero__line {
+  display: block;
+}
 .hero__accent {
   color: var(--ink-orange);
+}
+/* Mỗi từ nằm trong một "cửa sổ" cắt; dấu tiếng Việt cao nên chừa đệm trên và dưới để không bị cắt mất */
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.24em 0.04em 0.16em;
+  margin: -0.24em -0.04em -0.16em;
+}
+.w > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: word-up 640ms var(--ease-out) forwards;
+}
+@keyframes word-up {
+  to {
+    transform: none;
+  }
 }
 .hero .lead {
   margin-top: 20px;
@@ -411,6 +432,7 @@ summary {
   position: relative;
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 .hero__blob {
   position: absolute;
@@ -427,35 +449,6 @@ summary {
 }
 .hero__blob--blue {
   background: radial-gradient(circle at 40% 35%, rgb(37 99 235 / 28%) 0%, rgb(37 99 235 / 0%) 70%);
-}
-
-.chip {
-  position: absolute;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  color: var(--ink);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-.chip svg {
-  color: #047857;
-}
-.chip--a {
-  top: 96px;
-  left: max(0px, calc(50% - 214px));
-}
-.chip--b {
-  bottom: 120px;
-  right: max(0px, calc(50% - 206px));
-}
-.chip--b svg {
-  color: var(--ink-orange);
 }
 
 @media (min-width: 960px) {
@@ -1713,5 +1706,169 @@ summary {
   }
   .swap {
     transition-duration: 0s;
+  }
+}
+
+
+/* ---------- Hoạt cảnh 3D ở hero ---------- */
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 1 / 1;
+}
+.stage__glow {
+  position: absolute;
+  inset: 6% 4% 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgb(249 115 22 / 22%) 0%, rgb(249 115 22 / 0%) 68%);
+}
+.stage__canvas {
+  position: absolute;
+  inset: 0 0 12%;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+.stage__canvas.is-ready {
+  opacity: 1;
+}
+.ticket {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 2;
+  width: min(92%, 380px);
+  translate: -50% 0;
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px 16px;
+  border-radius: 24px;
+  background: rgb(255 255 255 / 94%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+.ticket__eyebrow {
+  color: var(--ink-orange);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.ticket__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  animation: fade 220ms ease-out;
+}
+.ticket__steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 10px 4px;
+  border-radius: 16px;
+  background: #f3f4f8;
+}
+.tstep {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  color: #5b6677;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 200ms ease;
+}
+.tstep__dot {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e2e5ec;
+  color: #6b7280;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 300ms var(--ease-out);
+}
+.tstep.is-done .tstep__dot {
+  background: var(--orange);
+  color: #fff;
+}
+.tstep.is-now {
+  color: var(--ink-orange);
+  font-weight: 800;
+}
+.tstep.is-now .tstep__dot {
+  background: var(--cta);
+  color: #fff;
+  transform: scale(1.1);
+}
+.stage__pause {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 92%);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out);
+}
+.stage__pause:active {
+  transform: scale(0.94);
+}
+
+/* ---------- Thanh tiến trình cuộn ---------- */
+
+.progress {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 3px;
+  background: var(--cta);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (max-width: 959px) {
+  /* Màn hẹp: thẻ trạng thái nằm dưới cảnh thay vì đè lên, để thấy trọn mô hình */
+  .stage {
+    max-width: 520px;
+    margin-inline: auto;
+    aspect-ratio: auto;
+  }
+  .stage__glow {
+    inset: 0 4% 20%;
+  }
+  .stage__canvas {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1 / 0.88;
+  }
+  .ticket {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    width: 100%;
+    margin-top: -6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w > span {
+    transform: none;
+    animation: none;
+  }
+  .ticket__title {
+    animation: none;
+  }
+  .tstep.is-now .tstep__dot {
+    transform: none;
   }
 }

@@ -1,7 +1,22 @@
 import { ArrowDown, BadgeCheck, MapPin, ReceiptText } from 'lucide-react';
 import { BRAND } from '../config';
-import { Phone, ScreenTracking } from './Phone';
 import { Reveal } from '../hooks/useReveal';
+import { RescueStage } from './RescueStage';
+
+/** Tiêu đề hiện từng từ: mỗi từ trượt lên từ sau một "cửa sổ" cắt, lệch nhau 70 ms. Chỉ transform nên không nhảy bố cục. */
+function Words({ text, start }: { text: string; start: number }) {
+  return (
+    <>
+      {text.split(' ').map((w, i) => (
+        <span key={i}>
+          <span className="w" aria-hidden="true">
+            <span style={{ animationDelay: `${(start + i) * 70 + 80}ms` }}>{w}</span>
+          </span>{' '}
+        </span>
+      ))}
+    </>
+  );
+}
 
 export function Hero() {
   return (
@@ -11,16 +26,19 @@ export function Hero() {
           <Reveal as="p" className="eyebrow">
             <MapPin size={14} aria-hidden="true" /> Đang chạy thử tại {BRAND.pilotArea}
           </Reveal>
-          <Reveal as="h1" index={1} className="hero__title">
-            Xe hỏng giữa đường?
-            <br />
-            <span className="hero__accent">Thợ đến tận nơi.</span>
-          </Reveal>
-          <Reveal as="p" index={2} className="lead">
+          <h1 className="hero__title" aria-label="Xe hỏng giữa đường? Thợ đến tận nơi.">
+            <span className="hero__line">
+              <Words text="Xe hỏng giữa đường?" start={0} />
+            </span>
+            <span className="hero__line hero__accent">
+              <Words text="Thợ đến tận nơi." start={4} />
+            </span>
+          </h1>
+          <Reveal as="p" index={5} className="lead">
             Fix&Go kết nối bạn với thợ sửa xe máy đã xác minh ở gần nhất. Biết giá trước khi sửa, bạn đồng ý rồi thợ
             mới làm.
           </Reveal>
-          <Reveal index={3} className="hero__actions">
+          <Reveal index={6} className="hero__actions">
             <a href="#tai-app" className="btn btn--cta btn--lg">
               Gọi thợ ngay
             </a>
@@ -28,7 +46,7 @@ export function Hero() {
               Xem cách hoạt động <ArrowDown size={18} aria-hidden="true" />
             </a>
           </Reveal>
-          <Reveal as="ul" index={4} className="hero__facts">
+          <Reveal as="ul" index={7} className="hero__facts">
             <li>
               <BadgeCheck size={18} aria-hidden="true" /> Thợ đã xác minh
             </li>
@@ -42,16 +60,7 @@ export function Hero() {
         </div>
 
         <Reveal index={2} className="hero__visual">
-          <div className="hero__blob" aria-hidden="true" />
-          <Phone label="Màn hình theo dõi thợ đang tới trong app Fix&Go (dữ liệu minh họa)">
-            <ScreenTracking />
-          </Phone>
-          <div className="chip chip--a" aria-hidden="true">
-            <BadgeCheck size={16} /> Thợ đã xác minh
-          </div>
-          <div className="chip chip--b" aria-hidden="true">
-            <ReceiptText size={16} /> Giá duyệt trước
-          </div>
+          <RescueStage />
         </Reveal>
       </div>
     </section>

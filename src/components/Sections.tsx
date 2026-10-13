@@ -1,6 +1,7 @@
 import { BadgeCheck, Banknote, Camera, ChevronDown, History, MapPin, ReceiptText, ShieldCheck, Store } from 'lucide-react';
 import { BRAND, LINKS } from '../config';
 import { CALL_OUT_FEE, FAQ, PARTNER_POINTS, SERVICES, TARGETS, TRUST, formatVnd } from '../content';
+import { CountUp } from '../hooks/useCountUp';
 import { Reveal } from '../hooks/useReveal';
 import { Phone, ScreenPartnerOffer, SERVICE_ICONS } from './Phone';
 
@@ -143,7 +144,9 @@ export function Trust() {
             {TARGETS.map((t) => (
               <div key={t.label}>
                 <dt>{t.label}</dt>
-                <dd>{t.value}</dd>
+                <dd>
+                  <CountUp pre={t.pre} n={t.n} dec={'dec' in t ? t.dec : 0} post={t.post} />
+                </dd>
               </div>
             ))}
           </dl>

@@ -86,10 +86,10 @@ export const TRUST = [
 ] as const;
 
 export const TARGETS = [
-  { value: '< 2 phút', label: 'Ghép được thợ' },
-  { value: '10–15 phút', label: 'Thợ đến nơi' },
-  { value: '> 90%', label: 'Đơn hoàn thành' },
-  { value: '≥ 4,5 sao', label: 'Đánh giá thợ' },
+  { pre: '< ', n: 2, post: ' phút', label: 'Ghép được thợ' },
+  { pre: '10–', n: 15, post: ' phút', label: 'Thợ đến nơi' },
+  { pre: '> ', n: 90, post: '%', label: 'Đơn hoàn thành' },
+  { pre: '≥ ', n: 4.5, dec: 1, post: ' sao', label: 'Đánh giá thợ' },
 ] as const;
 
 export const PARTNER_POINTS = [

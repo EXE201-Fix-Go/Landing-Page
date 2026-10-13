@@ -22,6 +22,7 @@ Node 20 trở lên.
 | Chữ, giá dịch vụ, câu hỏi thường gặp, các bước | `src/content.ts` |
 | Màu, khoảng cách, chuyển động | `src/index.css` (token ở `:root`) |
 | Màn hình minh họa trong khung điện thoại | `src/components/Phone.tsx` |
+| Hoạt cảnh 3D ở hero (timeline, xe, đường phố) | `src/scene/rescueScene.ts`, thẻ trạng thái ở `src/components/RescueStage.tsx` |
 
 Giá và phí trong `content.ts` lấy từ seed dịch vụ của BE (`V2__seed_reference_data.sql`, `V3__more_services.sql`) và
 `docs/BRD.md` v1.4. Khi BE đổi giá, cập nhật lại ở đây. Dịch vụ chưa có thợ phục vụ (tiếp xăng, vệ sinh sên) cố ý
@@ -32,6 +33,11 @@ chưa đưa lên trang.
 `.github/workflows/deploy.yml` tự deploy lên GitHub Pages khi push `main`. Bật một lần ở
 Settings → Pages → Source: **GitHub Actions**. Trang sẽ ở `https://exe201-fix-go.github.io/Landing-Page/`.
 Có tên miền riêng thì tạo biến Actions `VITE_BASE` = `/`.
+
+## Hoạt cảnh 3D
+
+Hero có cảnh Three.js tự dựng (không có tệp 3D ngoài). Thêm `?scene-t=6.5` vào URL để cố định cảnh ở giây thứ 6,5
+(0 = đang tìm thợ, 3,5 đến 9,2 = thợ đang chạy, 9,2 = đã tới, 10,4 trở đi = đang sửa) khi cần chụp ảnh kiểm tra.
 
 ## Thiết kế
 

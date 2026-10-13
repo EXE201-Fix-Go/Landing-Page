@@ -1,16 +1,30 @@
 import { Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NAV } from '../content';
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let raf = 0;
+    const paint = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const k = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      if (bar.current) bar.current.style.transform = `scaleX(${k})`;
+    };
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      if (!raf) raf = requestAnimationFrame(paint);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -50,6 +64,8 @@ export function Header() {
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
+      <div ref={bar} className="progress" aria-hidden="true" />
 
       <nav id="mobile-menu" className="mobile-menu" data-open={open} aria-label="Điều hướng trên điện thoại" hidden={!open}>
         <div className="container">
