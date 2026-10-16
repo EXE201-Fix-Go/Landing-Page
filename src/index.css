@@ -1596,6 +1596,11 @@ summary {
 .download__card .btn {
   margin-top: 8px;
 }
+.download__card .download__note {
+  margin-top: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
 .download__card--customer {
   background: var(--ink);
 }

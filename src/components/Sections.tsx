@@ -1,5 +1,5 @@
 import { BadgeCheck, Banknote, Camera, ChevronDown, History, MapPin, ReceiptText, ShieldCheck, Store } from 'lucide-react';
-import { BRAND, LINKS } from '../config';
+import { APK, BRAND, LINKS } from '../config';
 import { CALL_OUT_FEE, FAQ, PARTNER_POINTS, SERVICES, TARGETS, TRUST, formatVnd } from '../content';
 import { CountUp } from '../hooks/useCountUp';
 import { Reveal } from '../hooks/useReveal';
@@ -213,8 +213,8 @@ export function Partners() {
 
 function PartnerCta() {
   return LINKS.partnerApp ? (
-    <a className="btn btn--partner btn--lg" href={LINKS.partnerApp}>
-      Đăng ký làm đối tác
+    <a className="btn btn--partner btn--lg" href={LINKS.partnerApp} download>
+      Tải app và đăng ký đối tác
     </a>
   ) : (
     <span className="btn btn--soon btn--lg" role="note">
@@ -267,9 +267,15 @@ export function Download() {
           </h2>
           <p>Gọi thợ gần bạn, xem giá trước, theo dõi thợ tới ngay trên điện thoại.</p>
           {LINKS.customerApp ? (
-            <a className="btn btn--cta btn--lg" href={LINKS.customerApp}>
-              Tải app dành cho khách
-            </a>
+            <>
+              <a className="btn btn--cta btn--lg" href={LINKS.customerApp} download>
+                Tải app cho Android
+              </a>
+              <p className="download__note">
+                Bản {APK.version} · {APK.sizeLabel} · chỉ dành cho Android (iPhone: sắp có). Mở file vừa tải để cài; nếu Android
+                hỏi quyền cài ứng dụng từ nguồn ngoài, hãy cho phép cho trình duyệt bạn đang dùng.
+              </p>
+            </>
           ) : (
             <span className="btn btn--soon btn--lg" role="note">
               Sắp có trên cửa hàng ứng dụng

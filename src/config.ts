@@ -13,6 +13,9 @@ export const LINKS: Record<'customerApp' | 'partnerApp' | 'hotline' | 'social', 
   social: '',
 };
 
+/** Hiện cạnh nút tải khi LINKS.customerApp là một file APK. Cập nhật khi đổi file. */
+export const APK = { version: '1.0', sizeLabel: '104 MB' } as const;
+
 export const BRAND = {
   name: 'Fix&Go',
   pilotArea: 'Làng Đại học, Thủ Đức',
