@@ -4,9 +4,9 @@
  */
 export const LINKS: Record<'customerApp' | 'partnerApp' | 'hotline' | 'social', string> = {
   /** Link tải app khách (Google Play / App Store / trang TestFlight). */
-  customerApp: '',
+  customerApp: 'https://github.com/EXE201-Fix-Go/Landing-Page/releases/download/V1.0/FixAndGo1.0.apk',
   /** Link tải app thợ hoặc form đăng ký đối tác. */
-  partnerApp: '',
+  partnerApp: 'https://github.com/EXE201-Fix-Go/Landing-Page/releases/download/V1.0/FixAndGo1.0.apk',
   /** Hotline hiển thị ở footer, ví dụ '0900 000 000'. */
   hotline: '',
   /** Zalo OA / fanpage. */
