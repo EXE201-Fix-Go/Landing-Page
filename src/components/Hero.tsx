@@ -1,5 +1,6 @@
-import { ArrowDown, BadgeCheck, MapPin, ReceiptText } from 'lucide-react';
-import { BRAND } from '../config';
+import { ArrowDown, ArrowUpRight, BadgeCheck, MapPin, ReceiptText } from 'lucide-react';
+
+import { BRAND, LINKS } from '../config';
 import { Reveal } from '../hooks/useReveal';
 import { RescueStage } from './RescueStage';
 
@@ -42,7 +43,12 @@ export function Hero() {
             <a href="#tai-app" className="btn btn--cta btn--lg">
               Gọi thợ ngay
             </a>
-            <a href="#cach-hoat-dong" className="btn btn--ghost btn--lg">
+            {LINKS.webApp ? (
+              <a href={LINKS.webApp} className="btn btn--ghost btn--lg" target="_blank" rel="noopener">
+                Trải nghiệm thử <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+            ) : null}
+            <a href="#cach-hoat-dong" className="hero__link">
               Xem cách hoạt động <ArrowDown size={18} aria-hidden="true" />
             </a>
           </Reveal>

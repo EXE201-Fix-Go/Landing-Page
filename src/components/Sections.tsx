@@ -271,6 +271,11 @@ export function Download() {
               <a className="btn btn--cta btn--lg" href={LINKS.customerApp} download>
                 Tải app cho Android
               </a>
+              {LINKS.webApp ? (
+                <a className="download__web" href={LINKS.webApp} target="_blank" rel="noopener">
+                  Chưa muốn cài? Trải nghiệm thử trên web →
+                </a>
+              ) : null}
               <p className="download__note">
                 Bản {APK.version} · {APK.sizeLabel} · chỉ dành cho Android (iPhone: sắp có). Mở file vừa tải để cài; nếu Android
                 hỏi quyền cài ứng dụng từ nguồn ngoài, hãy cho phép cho trình duyệt bạn đang dùng.
@@ -318,7 +323,7 @@ export function Footer() {
           ) : null}
           {LINKS.social ? (
             <p>
-              <a href={LINKS.social}>Zalo / Fanpage Fix&Go</a>
+              <a href={LINKS.social} target="_blank" rel="noopener">Fanpage Facebook Fix&Go</a>
             </p>
           ) : null}
           {!LINKS.hotline && !LINKS.social ? <p>Thông tin liên hệ sẽ được cập nhật khi ra mắt.</p> : null}

@@ -413,6 +413,22 @@ summary {
   gap: 12px;
   margin-top: 32px;
 }
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding-inline: 4px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero__link:hover {
+    text-decoration: underline;
+  }
+}
 .hero__facts {
   display: flex;
   flex-wrap: wrap;
@@ -1595,6 +1611,15 @@ summary {
 }
 .download__card .btn {
   margin-top: 8px;
+}
+.download__web {
+  color: #fdba74;
+  font-weight: 600;
+  text-underline-offset: 3px;
+  padding-block: 10px;
+}
+.download__web:hover {
+  text-decoration: underline;
 }
 .download__card .download__note {
   margin-top: 0;
