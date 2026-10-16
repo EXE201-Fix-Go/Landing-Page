@@ -53,6 +53,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Các khối nền trang trí (.hero__blob) rộng hơn cột chứa chúng; không để chúng làm trang cuộn ngang. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
