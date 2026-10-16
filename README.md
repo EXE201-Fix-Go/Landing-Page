@@ -31,7 +31,9 @@ chưa đưa lên trang.
 ## Triển khai
 
 `.github/workflows/deploy.yml` tự deploy lên GitHub Pages khi push `main`. Bật một lần ở
-Settings → Pages → Source: **GitHub Actions**. Trang sẽ ở `https://exe201-fix-go.github.io/Landing-Page/`.
+Settings → Pages → Source: **GitHub Actions**. Trang chạy ở **https://fixgo.click** (tên miền mua tại Mắt Bão, hết hạn 16/10/2027, cần gia hạn). Địa chỉ cũ `https://exe201-fix-go.github.io/Landing-Page/` tự chuyển hướng sang tên miền này.
+
+DNS (Mắt Bão → Cấu hình DNS nâng cao): A `@` → `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`; CNAME `www` → `exe201-fix-go.github.io`. Bản build dùng đường dẫn tương đối nên chạy được ở cả hai địa chỉ.
 Có tên miền riêng thì tạo biến Actions `VITE_BASE` = `/`.
 
 ## Hoạt cảnh 3D
